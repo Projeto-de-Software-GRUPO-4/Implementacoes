@@ -1,4 +1,5 @@
 import java.util.UUID;
+import java.util.Scanner;
 
 public class Aluno {
     
@@ -9,8 +10,8 @@ public class Aluno {
     String nome;  
     String nomeDoResponsavel1;
     String nomeDoResponsavel2;
-    int telefoneResponsavel1;
-    int telefoneResponsavel2;
+    String telefoneResponsavel1;
+    String telefoneResponsavel2;
     int serie; 
     char ensino;
     char turno; 
@@ -91,20 +92,32 @@ public class Aluno {
         this.nomeDoResponsavel2 = nomeDoResponsavel2;
     }
 
-    public int getTelefoneResponsavel1() {
+    public String getTelefoneResponsavel1() {
         return telefoneResponsavel1;
     }
 
-    public void setTelefoneResponsavel1(int telefoneResponsavel1) {
+    public void setTelefoneResponsavel1(String telefoneResponsavel1) {
         this.telefoneResponsavel1 = telefoneResponsavel1;
     }
 
-    public int getTelefoneResponsavel2() {
+    public String getTelefoneResponsavel2() {
         return telefoneResponsavel2;
     }
 
-    public void setTelefoneResponsavel2(int telefoneResponsavel2) {
+    public void setTelefoneResponsavel2(String telefoneResponsavel2) {
         this.telefoneResponsavel2 = telefoneResponsavel2;
+    }
+
+    public String getAlunoInfo() { 
+        Scanner Input = new Scanner(System.in);
+        String numeroDeMatricula; 
+        System.out.println("Insira número de matrícula do aluno: ");
+        numeroDeMatricula = Input.nextLine(); 
+        
+        Arquivo.getAlunoInfoFromFile(numeroDeMatricula);
+        
+
+        return "A";
     }
 
 

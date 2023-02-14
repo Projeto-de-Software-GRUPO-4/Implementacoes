@@ -27,11 +27,61 @@ public class Arquivo {
     }
 
     public static void addNumeroMatriculaAluno(Aluno aluno) {
-        try {
-            Files.write(Paths.get("matriculas.txt"), Integer.toString(aluno.getNumeroDeMatricula()).getBytes(), StandardOpenOption.APPEND);
+        try {;
+            Files.write(Paths.get("matriculas.txt"), (Integer.toString(aluno.getNumeroDeMatricula()) + "\n").getBytes(), StandardOpenOption.APPEND);
         }catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getAlunoInfoFromFile(String numeroDeMatricula) {
+        
+        try {
+            File alunoFile = new File(numeroDeMatricula);
+            BufferedReader reader = new BufferedReader(new FileReader(alunoFile));
+            
+            String currentLine; 
+
+            int counter = 0; 
+            while((currentLine = reader.readLine()) != null) {
+
+                switch (counter) {
+                    case 0:
+                        System.out.printf("Nome: ");
+                        break;
+                    case 1:
+                        System.out.printf("Serie: ");
+                        break;
+                    case 2:
+                        System.out.printf("Ensino: ");
+                        break;
+                    case 3:
+                        System.out.printf("Turno: ");
+                        break;
+                    case 4:
+                        System.out.printf("Matrícula: ");
+                        break;
+                    case 5:
+                        System.out.printf("Mensalidade: ");
+                        break;
+                    case 6:
+                        System.out.printf("Dia do pagamento: ");
+                        break;
+                    default:
+                        break;
+                }
+                
+                System.out.println(currentLine);
+                counter++; 
+            }
+
+
+        } catch (IOException e) {
+            System.out.println("Não existe aluno com esse número de matrícula!");
+        }
+
+
+        return "A";
     }
 
     public static void removeNumeroMatricula(int numeroDeMatricula) {
@@ -40,6 +90,9 @@ public class Arquivo {
 
         File inputFile = new File("matriculas.txt");
         File tempFile = new File("matriculasTemp.txt");
+        File matriculaFile = new File(numeroDeMatriculaString);
+        File matriculaFileNew = new File(numeroDeMatriculaString + "_inactive");
+        
         try {
 
             BufferedReader reader = new BufferedReader(new FileReader(inputFile));
@@ -56,7 +109,12 @@ public class Arquivo {
             }
             writer.close(); 
             reader.close(); 
+
+            inputFile.delete();
             boolean successful = tempFile.renameTo(inputFile);
+
+            matriculaFile.renameTo(matriculaFileNew);
+
 
         } catch (IOException e) {
             e.printStackTrace();

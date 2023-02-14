@@ -22,6 +22,14 @@ public class AlunoCreator {
 
         System.out.println("Digite a data de vencimento da mensalidade do aluno (Ex: 12 [dia 12]):");
         aluno.setDiaDeVencimento(Input.nextInt());
+    
+        System.out.println("Digite o número de telefone do responsável (1):");
+        aluno.setTelefoneResponsavel1(Input.nextLine());
+      
+        System.out.println("Digite o número de telefone do responsável (2):");
+        aluno.setTelefoneResponsavel2(Input.nextLine());
+
+    
 
     }
 
@@ -34,5 +42,19 @@ public class AlunoCreator {
 
         return alunoInfo; 
     }
+
+    public static String getAlunoInfo() { 
+        Scanner Input = new Scanner(System.in);
+        String numeroDeMatricula; 
+        System.out.println("Insira número de matrícula do aluno: ");
+        numeroDeMatricula = Input.nextLine(); 
+        
+        Arquivo.getAlunoInfoFromFile(numeroDeMatricula);
+        
+
+        return "A";
+    }
+    
+    
 
 }

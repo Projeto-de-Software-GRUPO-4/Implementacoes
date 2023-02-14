@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.io.*;
 
-public class Edit{
+public class Edit {
     public static void opcao7(){
         System.out.print("\n\nDigite uma opção:\n1 - Voltar ao menu anterior\n2 - Encerrar\nOpcao:");
         Scanner in = new Scanner(System.in);
@@ -52,6 +52,18 @@ public class Edit{
                 lines[0] = edicao;
 
             }else if(opcao == 2){
+                
+                System.out.print("Digite a nova serie do(a) aluno(a): ");
+                String edicao = entrada.nextLine();
+                if(Integer.parseInt(edicao) >= 1 && Integer.parseInt(edicao) <= 9){
+                    lines[2] = edicao;
+                }else{
+                    System.out.println("\n\nSerie Invalida!");
+                    edit(matricula);
+                }
+
+            }else if(opcao == 3){
+                
                 System.out.print("Digite o novo tipo de ensino do(a) aluno(a): ");
                 String edicao = entrada.nextLine();
                 if(edicao.equals("I") || edicao.equals("i") || edicao.equals("f") || edicao.equals("F") || edicao.equals("M") || edicao.equals("m")){
@@ -61,15 +73,6 @@ public class Edit{
                     edit(matricula);
                 }
 
-            }else if(opcao == 3){
-                System.out.print("Digite a nova serie do(a) aluno(a): ");
-                String edicao = entrada.nextLine();
-                if(Integer.parseInt(edicao) >= 1 && Integer.parseInt(edicao) <= 9){
-                    lines[2] = edicao;
-                }else{
-                    System.out.println("\n\nSerie Invalida!");
-                    edit(matricula);
-                }
 
             }else if(opcao == 4){
                 System.out.print("Digite o novo turno do(a) aluno(a): ");
@@ -84,13 +87,13 @@ public class Edit{
             }else if(opcao == 5){
                 System.out.print("Digite o novo valor da mensalidade: ");
                 String edicao = entrada.nextLine();
-                lines[4] = "R$ " + edicao;
+                lines[5] = "R$ " + edicao;
 
             }else if(opcao == 6){
                 System.out.print("Digite a nova data de pagamento (as datas sao consideradas validas somente ate o dia 28): ");
                 String edicao = entrada.nextLine();
                 if(Integer.parseInt(edicao) >= 1 && Integer.parseInt(edicao) <= 28){
-                    lines[5] = edicao;
+                    lines[6] = edicao;
                 }else{
                     System.out.println("\n\nData Invalida (as datas sao consideradas validas somente ate o dia 28)!");
                     edit(matricula);
@@ -176,5 +179,5 @@ public class Edit{
 
 }
 
-}
+
 

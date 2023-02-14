@@ -7,7 +7,7 @@ public class Menu
     public static void menuOperacoes() {
         int selection;
         Scanner input = new Scanner(System.in);
-        System.out.println("Escolha uma das opções seguintes:\n1 - Adicionar aluno \n2 - Remover aluno\n3 - Alterar os dados de um aluno\n4 - Sair do programa");
+        System.out.println("Escolha uma das opções seguintes:\n1 - Adicionar aluno \n2 - Remover aluno\n3 - Alterar os dados de um aluno\n4 - Consultar dados do aluno \n5 - Sair do programa");
         selection = input.nextInt();
         
         if (selection == 1) {
@@ -32,6 +32,12 @@ public class Menu
 
         }
         if (selection == 4) {
+
+            AlunoCreator.getAlunoInfo();
+
+        }
+
+        if (selection == 5) {
             return;
         }
     
