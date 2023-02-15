@@ -8,19 +8,20 @@ public class AlunoCreator {
         System.out.print("Digite o nome do aluno: ");
         aluno.setNome(Input.nextLine());
 
-        int ano, mes, dia;
+        String ano, mes, dia;
         while(true){
             System.out.println("Digite a data de nascimento do(a) aluno(a) (Digite o dia e pressione enter, mes e pressione enter, ano e pressione enter):");
-            dia = Input.nextInt();
-            mes = Input.nextInt();
-            ano = Input.nextInt();
-            if(dia <= 31 && mes <= 12){
+            dia = Input.nextLine();
+            mes = Input.nextLine();
+            ano = Input.nextLine();
+            if(Integer.parseInt(dia) <= 31 && Integer.parseInt(mes) <= 12){
                 break;
             }else{
                 System.out.print("\n\nData invalida!");
             }
         }
-        String nasc = Integer.toString(dia) + "/" + Integer.toString(mes) + "/" + Integer.toString(ano);
+        
+        String nasc = dia + "/" + mes + "/" + ano;
         aluno.setDataNasc(nasc);
 
         
@@ -109,7 +110,7 @@ public class AlunoCreator {
 
     public static String getAlunoInfoAsString(Aluno aluno) {
         String alunoInfo;
-        alunoInfo = aluno.getNome() + "\n" + aluno.getSerie() + "\n" +
+        alunoInfo = aluno.getNome() + "\n" + aluno.getDataNasc() + "\n" + aluno.getSerie() + "\n" +
                     aluno.getEnsino() + "\n" + aluno.getTurno() + "\n" + 
                     aluno.getNumeroDeMatricula() + "\n" + aluno.getMensalidade() +
                     "\n" + aluno.getDiaDeVencimento() + "\n" + aluno.isSuspenso();
