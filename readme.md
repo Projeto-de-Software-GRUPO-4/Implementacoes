@@ -12,6 +12,7 @@ javac Main.java
 javac Menu.java
 javac NumeroMatricula.java
 javac Programa.java
+javac Turma.java
 
 
 java Main
