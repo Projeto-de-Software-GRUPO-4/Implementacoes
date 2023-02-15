@@ -67,6 +67,9 @@ public class Arquivo {
                     case 6:
                         System.out.printf("Dia do pagamento: ");
                         break;
+                    case 7:
+                        System.out.printf("Suspenso: ");
+                        break;
                     default:
                         break;
                 }

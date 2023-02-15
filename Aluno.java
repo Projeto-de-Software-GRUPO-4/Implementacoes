@@ -18,6 +18,7 @@ public class Aluno {
     int numeroDeMatricula = NumeroMatricula.numeroCreator();
     double mensalidade; 
     int diaDeVencimento;
+    boolean suspenso = false;
 
 
     public String getNome() {
@@ -106,6 +107,14 @@ public class Aluno {
 
     public void setTelefoneResponsavel2(String telefoneResponsavel2) {
         this.telefoneResponsavel2 = telefoneResponsavel2;
+    }
+
+    public boolean isSuspenso() {
+        return suspenso;
+    }
+
+    public void setSuspenso(boolean suspenso) {
+        this.suspenso = suspenso;
     }
 
     public String getAlunoInfo() { 

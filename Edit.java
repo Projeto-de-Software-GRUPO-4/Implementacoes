@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.io.*;
 
 public class Edit {
-    public static void opcao7(){
+    public static void opcao8(){
         System.out.print("\n\nDigite uma opção:\n1 - Voltar ao menu anterior\n2 - Encerrar\nOpcao:");
         Scanner in = new Scanner(System.in);
         int option = in.nextInt();
@@ -13,12 +13,12 @@ public class Edit {
             return;
         }else{
             System.out.println("\n\nOpção inválida!");
-            opcao7();
+            opcao8();
         }
     }
 
     public static void edit(String matricula){
-        System.out.print("Digite uma opção:\n1 - Editar o nome do aluno\n2 - Editar o tipo de ensino\n3 - Editar a serie\n4 - Editar o turno\n5 - Editar o valor da mensalidade\n6 - Editar a data de pagamento\n7 - Sair\nOpção: ");
+        System.out.print("Digite uma opção:\n1 - Editar o nome do aluno\n2 - Editar o tipo de ensino\n3 - Editar a serie\n4 - Editar o turno\n5 - Editar o valor da mensalidade\n6 - Editar a data de pagamento\n7 - Editar o status de suspensão\n8 - Sair\nOpção: ");
         Scanner input = new Scanner(System.in);
         int opcao = input.nextInt();
         
@@ -43,7 +43,7 @@ public class Edit {
                 i++;
             }scanner.close();
 
-            
+
             Scanner entrada = new Scanner(System.in);
             //opcoes
             if(opcao == 1){
@@ -52,7 +52,7 @@ public class Edit {
                 lines[0] = edicao;
 
             }else if(opcao == 2){
-                
+
                 System.out.print("Digite a nova serie do(a) aluno(a): ");
                 String edicao = entrada.nextLine();
                 if(Integer.parseInt(edicao) >= 1 && Integer.parseInt(edicao) <= 9){
@@ -63,7 +63,7 @@ public class Edit {
                 }
 
             }else if(opcao == 3){
-                
+
                 System.out.print("Digite o novo tipo de ensino do(a) aluno(a): ");
                 String edicao = entrada.nextLine();
                 if(edicao.equals("I") || edicao.equals("i") || edicao.equals("f") || edicao.equals("F") || edicao.equals("M") || edicao.equals("m")){
@@ -95,12 +95,22 @@ public class Edit {
                 if(Integer.parseInt(edicao) >= 1 && Integer.parseInt(edicao) <= 28){
                     lines[6] = edicao;
                 }else{
-                    System.out.println("\n\nData Invalida (as datas sao consideradas validas somente ate o dia 28)!");
+                    System.out.println("\n\nData Inválida (as datas sao consideradas válidas somente até o dia 28)!");
                     edit(matricula);
                 }
 
             }else if(opcao == 7){
-                opcao7();
+                System.out.print("Digite o novo status de suspensão (S ou N): ");
+                String edicao = entrada.nextLine();
+                if(edicao.equals("S") || edicao.equals("s") || edicao.equals("N") || edicao.equals("n")) {
+                    lines[7] = edicao.toUpperCase();
+                }else{
+                    System.out.println("\n\nStatus Inválido!");
+                    edit(matricula);
+                }
+
+            }else if(opcao == 8){
+                opcao8();
                 return;
 
             }else{

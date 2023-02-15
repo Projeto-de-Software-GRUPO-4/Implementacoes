@@ -38,7 +38,7 @@ public class AlunoCreator {
         alunoInfo = aluno.getNome() + "\n" + aluno.getSerie() + "\n" +
                     aluno.getEnsino() + "\n" + aluno.getTurno() + "\n" + 
                     aluno.getNumeroDeMatricula() + "\n" + aluno.getMensalidade() +
-                    "\n" + aluno.getDiaDeVencimento();
+                    "\n" + aluno.getDiaDeVencimento() + "\n" + aluno.isSuspenso();
 
         return alunoInfo; 
     }
