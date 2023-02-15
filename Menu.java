@@ -7,7 +7,7 @@ public class Menu
     public static void menuOperacoes() {
         int selection;
         Scanner input = new Scanner(System.in);
-        System.out.println("Escolha uma das opções seguintes:\n1 - Adicionar aluno \n2 - Remover aluno\n3 - Alterar os dados de um aluno\n4 - Consultar dados do aluno \n5 - Sair do programa");
+        System.out.print("Escolha uma das opções seguintes:\n1 - Adicionar aluno \n2 - Remover aluno\n3 - Alterar os dados de um aluno\n4 - Mostrar dados de um aluno\n5 - Expulsar aluno \n6 - Sair do programa\nOpcao: ");
         selection = input.nextInt();
         
         if (selection == 1) {
@@ -17,13 +17,19 @@ public class Menu
             AlunoCreator.init(aluno);
             Arquivo.createFileAluno(aluno);
             Arquivo.addNumeroMatriculaAluno(aluno);
+
+            Turma turma = new Turma(); 
+            turma.setNome(Integer.toString(aluno.getSerie()) + aluno.getEnsino() + aluno.getTurno());
+
+            Arquivo.addAlunoToTurma(turma, aluno);
             
         }
         if (selection == 2){
 
             System.out.println("Insira o número de matrícula:");
             int numeroDeMatricula = input.nextInt(); 
-            Arquivo.removeNumeroMatricula(numeroDeMatricula);
+            String nomeTurma = Arquivo.getAlunoNomeTurmaFromFile(numeroDeMatricula);
+            Arquivo.removeNumeroMatricula(numeroDeMatricula, nomeTurma, false);
 
         }
         if (selection == 3) {
@@ -32,12 +38,19 @@ public class Menu
 
         }
         if (selection == 4) {
-
+            
             AlunoCreator.getAlunoInfo();
-
+            
+        }
+        if (selection == 5) {
+            System.out.println("Insira o número de matrícula:");
+            int numeroDeMatricula = input.nextInt();
+            String nomeTurma = Arquivo.getAlunoNomeTurmaFromFile(numeroDeMatricula);
+            Arquivo.removeNumeroMatricula(numeroDeMatricula, nomeTurma, true);
+            System.out.println("Aluno expulso com sucesso!");
         }
 
-        if (selection == 5) {
+        if (selection == 6) {
             return;
         }
     

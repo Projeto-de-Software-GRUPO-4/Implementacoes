@@ -5,31 +5,105 @@ public class AlunoCreator {
     public static void init(Aluno aluno) {
 
         Scanner Input = new Scanner(System.in);
-        System.out.println("Digite o nome do aluno:");
+        System.out.print("Digite o nome do aluno: ");
         aluno.setNome(Input.nextLine());
 
-        System.out.println("Digite o ensino do aluno (I[infantil], F [fundamental], M [médio]):");
-        aluno.setEnsino(Input.next().charAt(0));;
+        int ano, mes, dia;
+        while(true){
+            System.out.println("Digite a data de nascimento do(a) aluno(a) (Digite o dia e pressione enter, mes e pressione enter, ano e pressione enter):");
+            dia = Input.nextInt();
+            mes = Input.nextInt();
+            ano = Input.nextInt();
+            if(dia <= 31 && mes <= 12){
+                break;
+            }else{
+                System.out.print("\n\nData invalida!");
+            }
+        }
+        String nasc = Integer.toString(dia) + "/" + Integer.toString(mes) + "/" + Integer.toString(ano);
+        aluno.setDataNasc(nasc);
 
-        System.out.println("Digite a série do aluno:");
-        aluno.setSerie(Input.nextInt());
+        
+        String aux;
+        while(true){
+            System.out.print("Digite o ensino do aluno (I[infantil], F [fundamental], M [médio]): ");
+            aux = Input.next();
 
-        System.out.println("Digite o turno do aluno:");
-        aluno.setTurno(Input.next().charAt(0));
+            if(aux.equals("I") || aux.equals("i") || aux.equals("F") || aux.equals("f") || aux.equals("M") || aux.equals("m")){
+                aux = aux.toUpperCase();
+                aluno.setEnsino(aux.charAt(0));
+                break;
+            }else{
+                System.out.print("\n\nEnsino invalido!\nDigite o ensino do aluno: ");
+            }
+        }
 
-        System.out.println("Digite a mensalidade do aluno:");
-        aluno.setMensalidade(Input.nextDouble());
+        if(aux.equals("I")){
+            aluno.setSerie(0);
 
-        System.out.println("Digite a data de vencimento da mensalidade do aluno (Ex: 12 [dia 12]):");
-        aluno.setDiaDeVencimento(Input.nextInt());
-    
-        System.out.println("Digite o número de telefone do responsável (1):");
-        aluno.setTelefoneResponsavel1(Input.nextLine());
-      
-        System.out.println("Digite o número de telefone do responsável (2):");
-        aluno.setTelefoneResponsavel2(Input.nextLine());
+        }else if(aux.equals("F")){
+            int serie;
+            System.out.println("Digite a série do aluno:");
+            while(true){
+                serie = Input.nextInt();
+                if(serie >= 1 && serie <= 9){
+                    aluno.setSerie(serie);
+                    break;
+                }else{
+                    System.out.print("\n\nSerie Invalida!");
+                    System.out.print("Digite a série do aluno: ");
+                }
+            }
 
-    
+        }else{
+            int serie;
+            System.out.print("Digite a série do aluno: ");
+            while(true){
+                serie = Input.nextInt();
+                if(serie >= 1 && serie <= 4){
+                    aluno.setSerie(serie);
+                    break;
+                }else{
+                    System.out.print("\n\nSerie Invalida!");
+                    System.out.print("Digite a série do aluno: ");
+                }
+            }
+        }
+
+
+        String turno;
+        while(true){
+            System.out.print("Digite o turno do aluno (M[Matutino], V[Vespertino], N[Noturno]): ");
+            turno = Input.next();
+            turno = turno.toUpperCase();
+
+            if(turno.equals("M") || turno.equals("V") || turno.equals("N")){
+                aluno.setTurno(turno.charAt(0));
+                break;
+            }else{
+                System.out.print("\n\nTurno invalido!");
+            }
+        }
+
+        System.out.print("Digite a mensalidade do aluno:");
+        double mensalidade = Input.nextDouble();
+        String mensality = "R$ " + Double.toString(mensalidade);
+        aluno.setMensalidade(mensality);
+
+        int venc;
+        while(true){
+            System.out.print("Digite a data de vencimento da mensalidade do aluno (Ex: 12 [dia 12]) (Datas de vencimento são consideradas válidas somente entre os dias 1 e 28):");
+            venc = Input.nextInt();
+            if(venc >= 1 && venc <= 28){
+                aluno.setDiaDeVencimento(venc);
+                break;
+            }else{
+                System.out.println("A data de vencimento é inválida!");
+            }
+        }
+
+        System.out.print("\n\nAluno(a) matriculado com sucesso!");
+
 
     }
 
@@ -43,6 +117,7 @@ public class AlunoCreator {
         return alunoInfo; 
     }
 
+
     public static String getAlunoInfo() { 
         Scanner Input = new Scanner(System.in);
         String numeroDeMatricula; 
@@ -54,7 +129,4 @@ public class AlunoCreator {
 
         return "A";
     }
-    
-    
-
 }

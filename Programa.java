@@ -28,7 +28,7 @@ public class Programa {
 
             System.out.println("Insira o número de matrícula:");
             int numeroDeMatricula = Input.nextInt(); 
-            Arquivo.removeNumeroMatricula(numeroDeMatricula);
+            Arquivo.removeNumeroMatricula(numeroDeMatricula, false);
 
         } else if (escolha == 3) {
             
