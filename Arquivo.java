@@ -145,6 +145,29 @@ public class Arquivo {
         return "A";
     }
 
+    public static void mostrarAlunosTurma(String nomeArquivoTurma) {
+
+        try {
+            File alunoFile = new File(nomeArquivoTurma + ".txt");
+            BufferedReader reader = new BufferedReader(new FileReader(alunoFile));
+            
+            String currentLine; 
+
+            while((currentLine = reader.readLine()) != null) {
+
+                System.out.println(currentLine);
+                
+            }
+
+
+        } catch (IOException e) {
+            System.out.println("Não existe turma com esse nome!");
+        }
+
+
+
+    }
+
 
     public static void removeNumeroMatricula(int numeroDeMatricula, String nomeDaTurma, boolean expelled) {
 
@@ -158,7 +181,6 @@ public class Arquivo {
 
         
         matriculaFile.renameTo(matriculaFileNew);
-        System.out.println("I wanna klnow");
         
         try {
 

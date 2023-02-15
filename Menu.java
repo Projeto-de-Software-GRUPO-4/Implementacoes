@@ -7,7 +7,7 @@ public class Menu
     public static void menuOperacoes() {
         int selection;
         Scanner input = new Scanner(System.in);
-        System.out.print("Escolha uma das opções seguintes:\n1 - Adicionar aluno \n2 - Remover aluno\n3 - Alterar os dados de um aluno\n4 - Mostrar dados de um aluno\n5 - Expulsar aluno \n6 - Sair do programa\nOpcao: ");
+        System.out.print("Escolha uma das opções seguintes:\n1 - Adicionar aluno \n2 - Remover aluno\n3 - Alterar os dados de um aluno\n4 - Mostrar dados de um aluno\n5 - Expulsar aluno \n6 - Mostrar alunos da turma\n7 - Sair do programa\nOpcao: ");
         selection = input.nextInt();
         
         if (selection == 1) {
@@ -29,6 +29,7 @@ public class Menu
             System.out.println("Insira o número de matrícula:");
             int numeroDeMatricula = input.nextInt(); 
             String nomeTurma = Arquivo.getAlunoNomeTurmaFromFile(numeroDeMatricula);
+            
             Arquivo.removeNumeroMatricula(numeroDeMatricula, nomeTurma, false);
 
         }
@@ -51,6 +52,16 @@ public class Menu
         }
 
         if (selection == 6) {
+            
+            System.out.println("Insira o nome da turma:");
+            String nome;
+            Scanner Input = new Scanner(System.in);
+            nome = Input.nextLine();
+            Arquivo.mostrarAlunosTurma(nome);
+            
+        }
+
+        if (selection == 7) {
             return;
         }
     

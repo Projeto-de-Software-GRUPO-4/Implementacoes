@@ -110,10 +110,10 @@ public class AlunoCreator {
 
     public static String getAlunoInfoAsString(Aluno aluno) {
         String alunoInfo;
-        alunoInfo = aluno.getNome() + "\n" + aluno.getDataNasc() + "\n" + aluno.getSerie() + "\n" +
+        alunoInfo = aluno.getNome() + "\n" + aluno.getSerie() + "\n" +
                     aluno.getEnsino() + "\n" + aluno.getTurno() + "\n" + 
                     aluno.getNumeroDeMatricula() + "\n" + aluno.getMensalidade() +
-                    "\n" + aluno.getDiaDeVencimento() + "\n" + aluno.isSuspenso();
+                    "\n" + aluno.getDiaDeVencimento() + "\n" + aluno.isSuspenso() +"\n" + aluno.getDataNasc();
 
         return alunoInfo; 
     }
