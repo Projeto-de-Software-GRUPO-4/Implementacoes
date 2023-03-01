@@ -1,5 +1,4 @@
-import java.util.UUID;
-import java.util.Scanner;
+import java.util.*;
 
 public class Aluno {
     
@@ -7,19 +6,19 @@ public class Aluno {
         return (int) ((Math.random() * (max - min)) + min);
     }
 
-    String nome;
-    String dataNasc;
+    String nome;  
     String nomeDoResponsavel1;
     String nomeDoResponsavel2;
-    int telefoneResponsavel1;
-    int telefoneResponsavel2;
-    int serie;
-    char ensino;
-    char turno;
+    String telefoneResponsavel1;
+    String telefoneResponsavel2;
+    int serie; 
+    String ensino;
+    String turno; 
     int numeroDeMatricula = NumeroMatricula.numeroCreator();
-    String mensalidade;
+    String mensalidade; 
     int diaDeVencimento;
-    boolean suspenso = false;
+    String dataNasc;
+    boolean suspenso;
 
 
     public String getNome() {
@@ -38,19 +37,19 @@ public class Aluno {
         this.serie = serie;
     }
 
-    public char getEnsino() {
+    public String getEnsino() {
         return ensino;
     }
 
-    public void setEnsino(char ensino) {
+    public void setEnsino(String ensino) {
         this.ensino = ensino;
     }
 
-    public char getTurno() {
+    public String getTurno() {
         return turno;
     }
 
-    public void setTurno(char turno) {
+    public void setTurno(String turno) {
         this.turno = turno;
     }
 
@@ -78,36 +77,20 @@ public class Aluno {
         this.diaDeVencimento = diaDeVencimento;
     }
 
-    public String getNomeDoResponsavel1() {
+    public String getNomeDoResponsavel() {
         return nomeDoResponsavel1;
     }
 
-    public void setNomeDoResponsavel1(String nomeDoResponsavel1) {
+    public void setNomeDoResponsavel(String nomeDoResponsavel1) {
         this.nomeDoResponsavel1 = nomeDoResponsavel1;
     }
 
-    public String getNomeDoResponsavel2() {
-        return nomeDoResponsavel2;
-    }
-
-    public void setNomeDoResponsavel2(String nomeDoResponsavel2) {
-        this.nomeDoResponsavel2 = nomeDoResponsavel2;
-    }
-
-    public int getTelefoneResponsavel1() {
+    public String getTelefoneResponsavel() {
         return telefoneResponsavel1;
     }
 
-    public void setTelefoneResponsavel1(int telefoneResponsavel1) {
+    public void setTelefoneResponsavel(String telefoneResponsavel1) {
         this.telefoneResponsavel1 = telefoneResponsavel1;
-    }
-
-    public int getTelefoneResponsavel2() {
-        return telefoneResponsavel2;
-    }
-
-    public void setTelefoneResponsavel2(int telefoneResponsavel2) {
-        this.telefoneResponsavel2 = telefoneResponsavel2;
     }
 
     public String getDataNasc(){
@@ -118,8 +101,7 @@ public class Aluno {
         this.dataNasc = dataNasc;
     }
 
-    
-    public boolean isSuspenso() {
+    public boolean getSuspenso(){
         return suspenso;
     }
 
@@ -138,4 +120,7 @@ public class Aluno {
 
         return "A";
     }
+
 }
+
+

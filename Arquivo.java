@@ -1,15 +1,9 @@
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.io.File;  // Import the File class
-import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.Scanner; // Import the Scanner class to read text files
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+
 
 public class Arquivo {
     public static void createFileTurma(Turma turma) {
@@ -77,10 +71,16 @@ public class Arquivo {
             int counter = 0; 
             
             while((currentLine = reader.readLine()) != null) {
-                if (counter == 1) serie = currentLine;
-                if (counter == 2) ensino = currentLine;
-                if (counter == 3) {turno = currentLine; break;}
-
+                if (counter == 5){
+                    serie = String.valueOf((currentLine.substring(0, 0) + currentLine.substring(7)).charAt(0));
+                }
+                if (counter == 6){
+                    ensino = String.valueOf((currentLine.substring(0, 0) + currentLine.substring(16)).charAt(0));
+                }
+                if (counter == 7) {
+                    turno = String.valueOf((currentLine.substring(0, 0) + currentLine.substring(7)).charAt(0));
+                    break;
+                }
                 counter++; 
             }
 
@@ -101,35 +101,11 @@ public class Arquivo {
             String currentLine; 
 
             int counter = 0; 
+            String aux = "";
             while((currentLine = reader.readLine()) != null) {
 
-                switch (counter) {
-                    case 0:
-                        System.out.printf("Nome: ");
-                        break;
-                    case 1:
-                        System.out.printf("Serie: ");
-                        break;
-                    case 2:
-                        System.out.printf("Ensino: ");
-                        break;
-                    case 3:
-                        System.out.printf("Turno: ");
-                        break;
-                    case 4:
-                        System.out.printf("Matrícula: ");
-                        break;
-                    case 5:
-                        System.out.printf("Mensalidade: ");
-                        break;
-                    case 6:
-                        System.out.printf("Dia do pagamento: ");
-                        break;
-                    case 7:
-                        System.out.printf("Suspenso: ");
-                        break;
-                    default:
-                        break;
+                if(counter > 10){
+                    break;
                 }
                 
                 System.out.println(currentLine);
@@ -146,12 +122,11 @@ public class Arquivo {
     }
 
     public static void mostrarAlunosTurma(String nomeArquivoTurma) {
-
         try {
             File alunoFile = new File(nomeArquivoTurma + ".txt");
             BufferedReader reader = new BufferedReader(new FileReader(alunoFile));
             
-            String currentLine; 
+            String currentLine;
 
             while((currentLine = reader.readLine()) != null) {
 
@@ -170,17 +145,21 @@ public class Arquivo {
 
 
     public static void removeNumeroMatricula(int numeroDeMatricula, String nomeDaTurma, boolean expelled) {
-
         String numeroDeMatriculaString = Integer.toString(numeroDeMatricula);
+        Scanner Input = new Scanner(System.in);
+        
 
         File inputFile = new File("matriculas.txt");
         File tempFile = new File("matriculasTemp.txt");
-        File matriculaFile = new File(numeroDeMatriculaString);
         // File matriculaFileNew = expelled ? new File(numeroDeMatriculaString + "_expelled") : new File(numeroDeMatriculaString + "_inactive");
-        File matriculaFileNew = new File(numeroDeMatriculaString + "_inactive");
+        if(expelled == true){
+            File matriculaFile = new File(numeroDeMatriculaString);
+            sucesso = matriculaFile.renameTo(new File(numeroDeMatriculaString + "_expelled"));
+        }else{
+            File matriculaFile = new File(numeroDeMatriculaString);
+            matriculaFile.renameTo(new File(numeroDeMatriculaString + "_inactive"));
+        }
 
-        
-        matriculaFile.renameTo(matriculaFileNew);
         
         try {
 
@@ -235,8 +214,6 @@ public class Arquivo {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         
     }
-
 }

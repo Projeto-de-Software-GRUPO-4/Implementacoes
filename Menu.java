@@ -7,51 +7,74 @@ public class Menu
     public static void menuOperacoes() {
         int selection;
         Scanner input = new Scanner(System.in);
-        System.out.print("Escolha uma das opções seguintes:\n1 - Adicionar aluno \n2 - Remover aluno\n3 - Alterar os dados de um aluno\n4 - Mostrar dados de um aluno\n5 - Expulsar aluno \n6 - Mostrar alunos da turma\n7 - Sair do programa\nOpcao: ");
+        System.out.print("Escolha uma das opções seguintes:\n1 - Adicionar aluno \n2 - Excluir aluno\n3 - Alterar os dados de um aluno\n4 - Mostrar dados de um aluno\n5 - Suspender aluno \n6 - Mostrar alunos da turma\n7 - Expulsar aluno\n8 - Sair do programa\nOpcao: ");
         selection = input.nextInt();
         
-        if (selection == 1) {
+        LimpaTela.limpa();
 
+        if(selection == 1) {
+            System.out.println("\tVOCE ESTA INSERINDO UM ALUNO NO SISTEMA!");
+            System.out.println("-----------------------------------------------------------------------------------------");
             Aluno aluno = new Aluno(); 
-
             AlunoCreator.init(aluno);
             Arquivo.createFileAluno(aluno);
             Arquivo.addNumeroMatriculaAluno(aluno);
-
-            Turma turma = new Turma(); 
-            turma.setNome(Integer.toString(aluno.getSerie()) + aluno.getEnsino() + aluno.getTurno());
-
+            Turma turma = new Turma();
+            turma.setNome(String.valueOf(Integer.toString(aluno.getSerie()).charAt(0)) + String.valueOf(aluno.getEnsino().charAt(0)) + String.valueOf(aluno.getTurno().charAt(0)));
             Arquivo.addAlunoToTurma(turma, aluno);
-            
-        }
-        if (selection == 2){
 
-            System.out.println("Insira o número de matrícula:");
-            int numeroDeMatricula = input.nextInt(); 
+            LimpaTela.limpa();
+            System.out.println("Matricula efetuada com sucesso!");
+            menuOperacoes();
+
+        }else if (selection == 2){
+            System.out.println("\tVOCE ESTA EXCLUINDO UM ALUNO DO SISTEMA!");
+            System.out.println("-----------------------------------------------------------------------------------------");
+            System.out.print("Insira o número de matrícula: ");
+            int numeroDeMatricula = input.nextInt();
+
+            if(Edit.exist(Integer.toString(numeroDeMatricula)) == false){
+                LimpaTela.limpa();
+                System.out.println("O numero de matricula nao existe!");
+                System.out.println("-----------------------------------------------------------------------------------------");
+                Menu.menuOperacoes();
+            }
+
             String nomeTurma = Arquivo.getAlunoNomeTurmaFromFile(numeroDeMatricula);
-            
             Arquivo.removeNumeroMatricula(numeroDeMatricula, nomeTurma, false);
-
-        }
-        if (selection == 3) {
             
+            //LimpaTela.limpa();
+            System.out.println("Exclusao efetuada com sucesso!");
+            menuOperacoes();
+
+        }else if (selection == 3) {
+            System.out.println("\tVOCE ESTA EDITANDO AS INFORMACOES DE UM ALUNO NO SISTEMA!");
+            System.out.println("-----------------------------------------------------------------------------------------");
             Edit.options();
 
-        }
-        if (selection == 4) {
-            
+            LimpaTela.limpa();
+            System.out.println("Edicao efetuada com sucesso!");
+            menuOperacoes();
+
+        }else if (selection == 4) {
+            System.out.println("\tVOCE ESTA VISUALIZANDO AS INFORMACOES DE UM ALUNO NO SISTEMA!");
+            System.out.println("-----------------------------------------------------------------------------------------");
             AlunoCreator.getAlunoInfo();
+
+            LimpaTela.limpa();
+            menuOperacoes();
             
-        }
-        if (selection == 5) {
+        }else if (selection == 5) {
+            System.out.println("\tVOCE ESTA SUSPENDENDO UM ALUNO NO SISTEMA!");
+            System.out.println("-----------------------------------------------------------------------------------------");
             System.out.println("Insira o número de matrícula:");
             int numeroDeMatricula = input.nextInt();
-            String nomeTurma = Arquivo.getAlunoNomeTurmaFromFile(numeroDeMatricula);
-            Arquivo.removeNumeroMatricula(numeroDeMatricula, nomeTurma, true);
+            
+            LimpaTela.limpa();
+            menuOperacoes();
             System.out.println("Aluno expulso com sucesso!");
-        }
 
-        if (selection == 6) {
+        }else if (selection == 6) {
             
             System.out.println("Insira o nome da turma:");
             String nome;
@@ -59,10 +82,33 @@ public class Menu
             nome = Input.nextLine();
             Arquivo.mostrarAlunosTurma(nome);
             
-        }
+        }else if(selection == 7){
+            System.out.println("\tVOCE ESTA EXPULSANDO UM ALUNO DO SISTEMA!");
+            System.out.println("-----------------------------------------------------------------------------------------");
+            System.out.print("Insira o número de matrícula: ");
+            int numeroDeMatricula = input.nextInt();
 
-        if (selection == 7) {
+            if(Edit.exist(Integer.toString(numeroDeMatricula)) == false){
+                LimpaTela.limpa();
+                System.out.println("O numero de matricula nao existe!");
+                System.out.println("-----------------------------------------------------------------------------------------");
+                Menu.menuOperacoes();
+            }
+
+            String nomeTurma = Arquivo.getAlunoNomeTurmaFromFile(numeroDeMatricula);
+            Arquivo.removeNumeroMatricula(numeroDeMatricula, nomeTurma, true);
+            
+            LimpaTela.limpa();
+            System.out.println("Expulsao efetuada com sucesso!");
+            menuOperacoes();
+        }else if (selection == 8) {
+            LimpaTela.limpa();
             return;
+            
+        }else{
+            LimpaTela.limpa();
+            System.out.println("Opcao Invalida!");
+            menuOperacoes();
         }
     
     
@@ -83,7 +129,7 @@ public class Menu
     public static void controleAcesso(){
         
         try{
-            System.out.print("Digite a senha de acesso: ");
+            System.out.print("Digite sua senha de acesso: ");
             String senhadigitada;
             Scanner input = new Scanner(System.in);
             senhadigitada = input.nextLine();
@@ -92,8 +138,12 @@ public class Menu
             BufferedReader leitor = new BufferedReader(new FileReader("senha.txt"));
             StringBuilder b = new StringBuilder();
             senha = leitor.readLine();
+
+            LimpaTela.limpa();
+
             if (senhadigitada.equals(senha)) {
                 System.out.println("Senha válida, logando...");
+                System.out.println("-----------------------------------------------------------------------------------------");
                 menuOperacoes();
             }
             else{
