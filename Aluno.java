@@ -1,32 +1,26 @@
 import java.util.*;
 
-public class Aluno {
+public class Aluno extends Usuario {
+
+    private String nomeDoResponsavel1;
+    private String nomeDoResponsavel2;
+    private String telefoneResponsavel1; 
+    private String telefoneResponsavel2;
+    private int serie; 
+    private String ensino;
+    private String turno; 
+    private int numeroDeMatricula = NumeroMatricula.numeroCreator();//
+    private String mensalidade; 
+    private int diaDeVencimento;
+    private boolean suspenso;
+
+
+    public Aluno() {
+        super();
+    }
     
     public int getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
-    }
-
-    String nome;  
-    String nomeDoResponsavel1;
-    String nomeDoResponsavel2;
-    String telefoneResponsavel1;
-    String telefoneResponsavel2;
-    int serie; 
-    String ensino;
-    String turno; 
-    int numeroDeMatricula = NumeroMatricula.numeroCreator();
-    String mensalidade; 
-    int diaDeVencimento;
-    String dataNasc;
-    boolean suspenso;
-
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public int getSerie() {
@@ -93,14 +87,6 @@ public class Aluno {
         this.telefoneResponsavel1 = telefoneResponsavel1;
     }
 
-    public String getDataNasc(){
-        return dataNasc;
-    }
-
-    public void setDataNasc(String dataNasc){
-        this.dataNasc = dataNasc;
-    }
-
     public boolean getSuspenso(){
         return suspenso;
     }
@@ -109,16 +95,14 @@ public class Aluno {
         this.suspenso = suspenso;
     }
 
-    public String getAlunoInfo() { 
+    public void getAlunoInfo() { 
         Scanner Input = new Scanner(System.in);
         String numeroDeMatricula; 
         System.out.println("Insira número de matrícula do aluno: ");
         numeroDeMatricula = Input.nextLine(); 
         
-        Arquivo.getAlunoInfoFromFile(numeroDeMatricula);
+        new ArquivoAluno().getInfoFromFile(numeroDeMatricula);
         
-
-        return "A";
     }
 
 }
